@@ -1,0 +1,44 @@
+﻿
+@model List<NAPowerMVCApp.Models.UserAccount>
+
+@{
+    ViewBag.Title = "User Accounts";
+}
+
+<div class="h1">
+    <h1>User Accounts</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Postal</th>
+            <th>Email</th>
+            <th>Delete</th>
+        </tr>
+
+        @foreach (NAPowerMVCApp.Models.UserAccount account in @Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(account.Id.ToString(), "UserAccount", "Home", new { id = account.Id }, null)</td>
+                <td>@Html.DisplayFor(modelItem => account.Name)</td>
+                <td>@Html.DisplayFor(modelItem => account.Address)</td>
+                <td>@Html.DisplayFor(modelItem => account.Postal)</td>
+                <td>@Html.DisplayFor(modelItem => account.Email)</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Home", new { id = account.Id }, null)</td>
+            </tr>
+        }
+    </table>
+
+    <div>
+        @Html.ActionLink("Add", "Add")
+    </div>
+
+}
+
+
+
